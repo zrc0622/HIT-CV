@@ -253,7 +253,7 @@ def process_img(image_dir, filter_size, filter_sigma, rho_resolution, theta_reso
         rgb_img_copy[red_mask] = [255, 0, 0]  # 设置为红色
     except:
         pass
-    # plt.imsave('result_'+image_dir, rgb_img_copy)
+    # plt.imsave('images/'+'result_'+image_dir[10:], rgb_img_copy)
     return rgb_img_copy
 
 def extract_frames(video_path, output_dir, filter_size, filter_sigma, rho_resolution, theta_resolution, threshold):
@@ -301,7 +301,7 @@ def images_to_video(input_folder, output_video_path, fps):
 
 if __name__ == "__main__":
     # 图片视频参数
-    image_dir = 'test_img.jpg'
+    image_dir = './images/test_img.jpg'
     
     # 高斯滤波参数
     filter_size = 5
@@ -310,16 +310,16 @@ if __name__ == "__main__":
     # hough参数
     rho_resolution = 1
     theta_resolution = np.pi / 180
-    threshold = 100
+    threshold = 60
 
     # 视频参数
-    video_path = "test_video.mp4"
-    output_dir = "video_images"
-    output_video_path = "output_test_video.mp4"
+    video_path = "./videos/video.mp4"
+    output_dir = "./video_images"
+    output_video_path = "./output_videos/output_video.mp4"
 
     # process_img(image_dir, filter_size, filter_sigma, rho_resolution, theta_resolution, threshold)
 
     # 抽取帧并检测
     extract_frames(video_path, output_dir, filter_size, filter_sigma, rho_resolution, theta_resolution, threshold)
     # 合成视频
-    images_to_video(output_dir, output_video_path)
+    images_to_video(output_dir, output_video_path, 30)
